@@ -1,0 +1,15 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-dentallive-denlive-9d1a0-authRole",
+      "UnauthRoleArn": "arn:aws:iam::637423266623:role/amplify-dentallive-denlive-9d1a0-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::637423266623:role/amplify-dentallive-denlive-9d1a0-authRole",
+      "Region": "ap-south-1",
+      "DeploymentBucketName": "amplify-dentallive-denlive-9d1a0-deployment",
+      "UnauthRoleName": "amplify-dentallive-denlive-9d1a0-unauthRole",
+      "StackName": "amplify-dentallive-denlive-9d1a0",
+      "StackId": "arn:aws:cloudformation:ap-south-1:637423266623:stack/amplify-dentallive-denlive-9d1a0/51e0b410-56fd-11ef-bf03-0619726bdd81",
+      "AmplifyAppId": "d3kbnq2prvngjj"
+    }
+  }
+}
