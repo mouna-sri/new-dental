@@ -7,3 +7,656 @@ type Todo @model {
   name: String!
   description: String
 }
+
+type QuestionBankDetails @model {
+  id: ID!
+  name: String!
+  code: String!
+  description: String!
+  adminID: ID
+  userID: ID!
+  status: Int!
+}
+
+type GroupQuestions @model {
+  id: ID!
+  content: String!
+  questionBankID: ID!
+}
+
+type Assessment @model {
+  id: ID!
+  testName: String!
+  testCode: String
+  testDescription: String
+  testType: String!
+  campus: [String]!
+  visibility: String
+  department: String
+  tags: [String]!
+  section: [Assessmentsection]
+}
+
+type Assessmentsection @model {
+  id: ID!
+  sectionId: ID!
+  duration: String
+  additionalInformation: String
+}
+
+type Questions @model {
+  id: ID!
+  standardInputs: String
+  questionBankID: ID!
+  questionType: String!
+  questionSubType: String!
+  subject: String!
+  difficulty: String!
+  topicId: ID!
+  directions: String
+  codeEditor: String
+  textEditor: String
+  options: [option]
+  solution: [solution]
+  hint: [hint]
+  media: String
+  questionName: String
+  wordLimit: Int
+  videoSolution: String
+  competency: [competency]
+  subTopic: String
+  concepts: String
+  adminID: ID
+  userID: ID!
+  blanksCount: Int
+  caseSensitive: Boolean
+  QuesDependency: String
+  fillUpanswer: [answer]
+  languages: [ID]
+  SingleLanguage: String
+  inputFormat: String
+  outputFormat: String
+  enableCustomInput: Boolean
+  enableAPITesting: Boolean
+  codeConstraints: String
+  evaluationTime: Boolean
+  timeLimit: String
+  memoryLimit: String
+  outputLimit: String
+  codeSize: String
+  sample: [solution]
+  backgroundImg: String
+  initialQuery: String
+  fileCount: Int
+  fileCountMandatory: Boolean
+  fileFormats: [String]
+  enableAutoRecord: Boolean
+  minRecording: Int
+  maxRecording: Int
+  attemptsToRecord: Int
+  autoEvaluation: Boolean
+  cloudProvider: String
+  startTime: Int
+  ZipFile: String
+  themes: [String]
+  fileSizes: [String]
+  techStack: ID
+  instanceSize: ID
+  explaination: String
+  compilerOutput: String
+  compilerLanguage: String
+  compilerProgram: String
+  htmlCssJsCode: String
+  groupQuestionID: ID
+  questionCode: String
+  tags: [String]
+}
+
+type course @model {
+  id: ID!
+  courseName: String
+  courseCode: String
+  PublishingText: String
+  description: String
+  file: String
+  showLeaderBoard: String
+  adminID: [String]
+  visibility: String
+  department: [String]
+  batch: [String]
+  category: String
+  tags: Boolean
+  adminID1: String
+  department1: String
+  batch1: String
+  degree: String
+  skuCode: String
+  userID: ID
+  hodID: ID
+  mediaInputType: String
+  subject: String
+  topicId: String
+  subTopic: String
+  courseValidity: [courseValidity]
+}
+
+type courseValidity {
+  months: String
+  price: String
+}
+
+type courseCategory @model {
+  id: ID!
+  name: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type testContent @model {
+  id: ID!
+  courseID: ID
+  testID: ID
+  contentID: ID
+  description: String
+  timeZone: String
+  fromDate: String
+  toDate: String
+  shuffleQues: Boolean
+  shuffleOptions: Boolean
+  analyticsReport: Boolean
+  hint: Boolean
+  result: Boolean
+  expectedOutput: Boolean
+  testCase: Boolean
+  submitCount: Boolean
+  lockTest: Boolean
+  prevButton: Boolean
+  choice: Boolean
+  maxQuesMarks: Int
+  negMarks: Int
+  maxAttend: Boolean
+  cutoffMarks: String
+  ruleType: String
+  percentageCondition: String
+  testPercentage: Int
+  lockContent: Boolean
+  allowDownload: Boolean
+  freePreview: Boolean
+  limit: String
+  resultPercentage: Int
+  maxQuesAttended: Int
+  type: String
+  displayQuestions: String
+  timer: Timer
+  sectionWiseMarks: [sectionWiseMarks]
+  QuestionWiseMarks: [QuestionWiseMarks]
+  marksType: String
+  actualMarks: String
+  status: Int
+}
+
+type studentTest @model {
+  id: ID!
+  studentID: ID
+  testContentID: ID
+  courseID: ID
+  percentage: String
+  totalMarks: String
+  ScoredMarks: String
+}
+
+type studentTestQuestions @model {
+  id: ID!
+  studentTest: ID
+  sectionID: ID
+  questionID: ID
+  answerOption: String
+  actualMarks: String
+  negativeMarks: String
+  result: String
+  compilerOutput: String
+  compilerLanguage: String
+  compilerProgram: String
+}
+
+type sectionWiseMarks {
+  sectionID: ID
+  cutoffMarks: String
+  actualMarks: String
+}
+
+type QuestionWiseMarks {
+  sectionID: ID
+  questionID: ID
+  cutoffMarks: String
+  actualMarks: String
+}
+
+type Timer {
+  hours: Int
+  minutes: Int
+  seconds: Int
+}
+
+type Test @model {
+  id: ID!
+  nameOfTest: String
+  testCode: String
+  testDescription: String
+  testType: String
+  adminID: [String]
+  hodID: [String]
+  visibility: String
+  department: [String]
+  tags: [String]
+  section: [testSection]
+  userID: ID
+  manualEvaluation: Boolean
+}
+
+type TestQuestion @model {
+  id: ID!
+  testID: ID!
+  sectionID: ID
+  questionID: ID!
+}
+
+type testSection {
+  id: String
+  sectionName: String
+  additionalInformation: String
+}
+
+type hint {
+  optionNumber: Int
+  hint: String
+}
+
+type option {
+  isPartialCorrect: Boolean!
+  correctAnswer: Boolean!
+  optionNumber: Int
+  weightage: Int
+  answer: String!
+  negMarks: Int
+  splitMarksEqually: Boolean
+  fullMarksIfAnyCorrect: Boolean
+  fullMarksOnlyIfAllCorrect: Boolean
+}
+
+type answer {
+  splitMarksEqually: String
+  weightage: Int
+  answer: String
+  alternateAns: [String]
+}
+
+type solution {
+  answer: String
+  optionNumber: Int
+  bestSolution: Boolean
+}
+
+type ContentBankDetails @model {
+  id: ID!
+  name: String!
+  description: String!
+  adminID: ID!
+  visibility: String!
+  groups: [String]!
+  userID: ID!
+  status: Int!
+  subject: String
+  topicId: String
+  subTopic: String
+}
+
+type content @model {
+  id: ID!
+  contentBankID: ID!
+  contentType: String!
+  contentsubType: String!
+  contentName: String!
+  subTopic: String!
+  topicId: String!
+  subject: String!
+  content: String!
+  averageReadTime: String!
+  additionalInformation: String!
+  adminID: ID!
+  userID: ID!
+}
+
+type variableQuestion {
+  expression: String!
+  sets: Int!
+  variablesCount: Int!
+  questionExp: String!
+  decimal: String!
+}
+
+type competency {
+  progSub: String
+  progTopic: String
+  progLevel: String
+}
+
+type myTable2 @model {
+  id: ID!
+  title: String!
+  gender: String!
+  address: String!
+  age: Int!
+}
+
+type subject @model {
+  id: ID!
+  name: String!
+  status: Int!
+  userID: ID!
+  adminID: ID!
+  code: String!
+}
+
+type topic @model {
+  id: ID!
+  subjectID: ID!
+  name: String!
+  status: Int!
+  userID: ID!
+  code: String!
+  adminID: String
+}
+type subTopic @model {
+  id: ID!
+  topicID: ID!
+  name: String!
+  status: Int!
+  userID: ID!
+  code: String!
+  adminID: String
+}
+
+type studentJobAppliedJob @model {
+  id: ID!
+  studentID: ID!
+  jobID: ID!
+  status: String
+  adminID: ID
+}
+
+type group @model {
+  id: ID!
+  name: String!
+}
+
+type branch @model {
+  id: ID!
+  name: String!
+}
+
+type year @model {
+  id: ID!
+  name: String!
+}
+
+type section @model {
+  id: ID!
+  name: String!
+}
+
+type skill @model {
+  id: ID!
+  name: String!
+}
+
+type tag @model {
+  id: ID!
+  name: String!
+}
+
+type blogCategory @model {
+  id: ID!
+  name: String!
+}
+
+type themes @model {
+  id: ID!
+  name: String!
+}
+
+type Language @model {
+  id: ID!
+  name: String!
+}
+
+type batch @model {
+  id: ID!
+  name: String!
+}
+
+type state @model {
+  id: ID!
+  name: String!
+}
+
+type district @model {
+  id: ID!
+  name: String!
+}
+
+type specialization @model {
+  id: ID!
+  name: String!
+}
+
+type department @model {
+  id: ID!
+  name: String!
+}
+
+type techStack @model {
+  id: ID!
+  name: String!
+}
+
+type instanceSize @model {
+  id: ID!
+  name: String!
+}
+
+type programmerSubject @model {
+  id: ID!
+  name: String!
+}
+
+type programmerTopic @model {
+  id: ID!
+  name: String!
+}
+
+type programmerLevel @model {
+  id: ID!
+  name: String!
+}
+
+type StudentSection @model {
+  id: ID!
+  name: String!
+}
+
+type blog @model {
+  id: ID!
+  catergory: [ID]
+  title: String!
+  description: String!
+  status: Int!
+  userID: ID!
+  adminID: ID
+  hodID: ID
+  tutorID: ID
+}
+
+type jobDrive @model {
+  id: ID!
+  driveObjective: String!
+  campus: [String]!
+  division: String
+  driveName: String
+  companyName: String
+  companyDomainURL: String
+  location: String
+  internshipDuration: Int
+  weeksMonths: String
+  jobDescription: String
+  skills: [String]
+  jobRole: String
+  department: [String]
+  XthPercentage: Int
+  IntermediatePercentage: Int
+  DiplomaPercentage: Int
+  GraduationPercentage: Int
+  year: [String]
+  SelectionProcess: String
+  DateofDrive: String
+  ReportingTime: String
+  aboutCompany: String
+  additionalInformation: String
+  payType: String
+  payRole: String
+  payAmount: Int
+  newResume: Boolean
+  userID: String
+  adminID: String
+  hodID: String
+  tutorID: String
+  round: [jobRound]
+}
+
+type jobRound {
+  input: String
+}
+
+type company @model {
+  id: ID!
+  name: String!
+}
+
+type studentJobNotification @model {
+  id: ID!
+  studentID: ID!
+  jobID: ID!
+  roundStatus: [updateroundStatus]
+}
+
+type updateroundStatus {
+  name: String
+  status: Int
+}
+
+type AssignMeetingStudents @model {
+  id: ID!
+  studentID: ID!
+  meetingID: ID!
+  attendanceStatus: Int
+}
+
+type user @model {
+  id: ID!
+  rollno: String
+  gender: String
+  DOB: String
+  email: String!
+  password: String!
+  MobNumber: String!
+  username: String!
+  role: String!
+  status: Int!
+  permissions: Permissions
+  adminID: ID!
+  type: String
+  uploadType: String
+  groups: [String]
+  userID: ID
+  organisation: String
+  hodID: ID
+  tutorID: ID
+  Batch: String
+  department: [ID]
+  specialization: String
+  course: [ID]
+  resume: String
+  address: String
+  personName: String!
+  personDesignation: String!
+  OTP: String
+  branch: String
+  section: String
+  yearOfPassout: String
+  yearOfJoining: String
+  tenthPercentage: Int
+  InterPercentage: Int
+  diplomaPercentage: Int
+  graduationPercentage: Int
+  postGraduationPercentage: Int
+  Organizationcode: String
+  State: String
+  District: String
+  Pincode: String
+  Website: String
+}
+
+type meetings @model {
+  id: ID!
+  title: String!
+  meetingLink: String!
+  dateTime: String!
+  otp: Int!
+  userID: ID!
+  campusID: ID!
+}
+
+type AssignStudentToCourse @model {
+  id: ID!
+  studentID: ID!
+  courseID: ID!
+  type: String!
+  amountPaid: String
+  months: String
+  transactionDate: String
+}
+
+type Permissions {
+  Jobs: PermissionDetails!
+  Courses: PermissionDetails!
+  Exams: PermissionDetails!
+  Results: PermissionDetails!
+  QuestionBank: PermissionDetails!
+  Questions: PermissionDetails!
+  ContentBank: PermissionDetails!
+  Content: PermissionDetails!
+  Groups: PermissionDetails!
+  Tests: PermissionDetails!
+  Drives: PermissionDetails!
+  Student: PermissionDetails!
+  Reports: PermissionDetails!
+  StudentApprove: PermissionDetails!
+  StudentReject: PermissionDetails!
+  Tutor: PermissionDetails!
+  Attendance: PermissionDetails!
+  LeaderBoard: PermissionDetails!
+}
+
+type PermissionDetails {
+  showInMenu: String!
+  create: String!
+  edit: String!
+  view: String!
+  publisher: String!
+  proctorAdmin: String!
+  evaluator: String!
+  download: String!
+  allow: String!
+  notallow: String!
+}
+
